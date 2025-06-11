@@ -24,7 +24,8 @@ const emptyService = {
 const emptyPayment = {
   method: '',
   transactionId: '',
-  type: '', // ✅ Added payment type
+  type: '',
+  remaining: '', // ✅ New field added
 };
 
 export default function App() {
@@ -44,7 +45,6 @@ export default function App() {
       const next = [...prev];
       next[idx] = { ...next[idx], [field]: value };
 
-      // Auto‑calculate total if hours & rate are valid numbers
       const hours = parseFloat(next[idx].hours);
       const rate = parseFloat(next[idx].rate);
       if (!isNaN(hours) && !isNaN(rate)) {
@@ -64,7 +64,7 @@ export default function App() {
   const grandTotal = subtotal;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold mb-6">Invoice Generator</h1>
 
       {/* ---------- Branding & Creator Info Header ---------- */}
@@ -127,8 +127,8 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input name="method" placeholder="Payment Method" value={payment.method} onChange={handlePaymentChange} className="w-full border border-gray-300 rounded px-2 py-1" />
               <input name="transactionId" placeholder="Transaction ID" value={payment.transactionId} onChange={handlePaymentChange} className="w-full border border-gray-300 rounded px-2 py-1" />
-              {/* ✅ Added payment type input */}
-              <input name="type" placeholder="Payment Type (Advance / Mid / Final)" value={payment.type} onChange={handlePaymentChange} className="md:col-span-2 w-full border border-gray-300 rounded px-2 py-1" />
+              <input name="type" placeholder="Payment Type (Advance / Mid / Final)" value={payment.type} onChange={handlePaymentChange} className="w-full border border-gray-300 rounded px-2 py-1" />
+              <input name="remaining" placeholder="Remaining Payment" value={payment.remaining} onChange={handlePaymentChange} className="w-full border border-gray-300 rounded px-2 py-1" />
             </div>
           </section>
 
@@ -190,7 +190,8 @@ export default function App() {
               <p className="text-lg">Grand Total: <span className="font-bold">{grandTotal}</span></p>
               <p>Payment: {payment.method}</p>
               <p>Transaction ID: {payment.transactionId}</p>
-              <p>Payment Type: {payment.type}</p> {/* ✅ Live Preview support */}
+              <p>Payment Type: {payment.type}</p>
+              <p>Remaining Payment: {payment.remaining}</p>
             </div>
           </div>
         </div>

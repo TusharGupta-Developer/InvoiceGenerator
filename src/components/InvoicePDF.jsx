@@ -132,6 +132,8 @@ const InvoicePDF = ({
                     <Text style={styles.cellSmall}>Rate</Text>
                     <Text style={styles.cellSmall}>Total</Text>
                 </View>
+
+                {/* User-entered services */}
                 {services.map((s, i) => (
                     <View key={i} style={styles.row}>
                         <Text style={styles.cellDesc}>{s.description}</Text>
@@ -140,7 +142,28 @@ const InvoicePDF = ({
                         <Text style={styles.cellSmall}>{s.total}</Text>
                     </View>
                 ))}
+
+                {/* Preset additional services */}
+                <View style={styles.row}>
+                    <Text style={styles.cellDesc}>Contact form integrated with EmailJS</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.cellDesc}>Deployment assistance with hosting (3 months)</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                </View>
+                <View style={styles.row}>
+                    <Text style={styles.cellDesc}>1 month free support for bug fixes</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                    <Text style={styles.cellSmall}>0</Text>
+                </View>
             </View>
+
 
             {/* Totals */}
             <View style={styles.totals}>
@@ -164,12 +187,17 @@ const InvoicePDF = ({
                     <Text>Payment Type:</Text>
                     <Text>{payment.type || '—'}</Text>
                 </View>
+                <View style={styles.totalRow}>
+                    <Text>Remaining Payment:</Text>
+                    <Text>{payment.remaining || '—'}</Text>
+                </View>
+
             </View>
 
             {/* 📜 License Terms */}
             <View style={styles.licenseSection}>
                 <Text style={[styles.bold, { marginBottom: 6 }]}>
-                    📜 License Terms (Standard – Non-Exclusive)
+                    License Terms (Standard – Non-Exclusive)
                 </Text>
                 <Text style={styles.licenseText}>
                     This website is built using a professionally crafted, modular design system that enables high-quality, fast, and cost-effective delivery.{"\n\n"}
@@ -180,6 +208,17 @@ const InvoicePDF = ({
                     ● You may not resell, redistribute, or sublicense the website or its underlying code to others. This package does not include source code access, as the system is part of a licensed design framework.
                 </Text>
             </View>
+
+            {/* Horizontal line */}
+            <View style={{ marginTop: 20, borderTopWidth: 1, borderColor: '#ccc' }} />
+
+            {/* System-generated notice */}
+            <View style={{ marginTop: 8 }}>
+                <Text style={{ fontSize: 9, color: '#666', textAlign: 'center' }}>
+                    This is a system-generated invoice and does not require a physical signature.
+                </Text>
+            </View>
+
 
         </Page>
     </Document>
