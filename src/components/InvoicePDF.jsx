@@ -143,8 +143,8 @@ const InvoicePDF = ({
                     </View>
                 ))}
 
-                {/* Preset additional services */}
-                <View style={styles.row}>
+                {/* Preset additional services  */}
+                {/* <View style={styles.row}>
                     <Text style={styles.cellDesc}>Contact form integrated with EmailJS</Text>
                     <Text style={styles.cellSmall}>0</Text>
                     <Text style={styles.cellSmall}>0</Text>
@@ -161,7 +161,7 @@ const InvoicePDF = ({
                     <Text style={styles.cellSmall}>0</Text>
                     <Text style={styles.cellSmall}>0</Text>
                     <Text style={styles.cellSmall}>0</Text>
-                </View>
+                </View> */}
             </View>
 
 
